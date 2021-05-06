@@ -230,3 +230,40 @@ const modalTimerId = setTimeout(modalAdd, 3000);
         }
     }
     window.addEventListener('scroll', showModalByScroll);
+
+
+// Constract
+
+class MenuItem{
+    constructor(img,subtitle,descr,total){
+        this.img = img;
+        this.subtitle = subtitle;
+        this.descr = descr;
+        this.total = total;
+    }
+
+    MenuItemHtml(){return `    <img src="${this.img}" alt="vegy">
+                            <h3 class="menu__item-subtitle">${this.subtitle}</h3>
+                            <div class="menu__item-descr">${this.descr}</div>
+                            <div class="menu__item-divider"></div>
+                            <div class="menu__item-price">
+                                <div class="menu__item-cost">Цена:</div>
+                                <div class="menu__item-total"><span>${this.total}</span> грн/день</div>
+                            </div>`
+                        
+    }
+
+}
+
+const menu1 = new MenuItem('img/tabs/vegy.jpg','Меню "Фитнес"','Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!','229');
+const menu2 = new MenuItem('img/tabs/elite.jpg','Меню “Премиум”','В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!','550');
+const menu3 = new MenuItem('img/tabs/post.jpg','Меню "Постное','Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.','430');
+
+console.log(menu1);
+
+const menuHtml = document.querySelectorAll('.menu__item');
+
+menuHtml[0].innerHTML = menu1.MenuItemHtml();
+menuHtml[1].innerHTML = menu2.MenuItemHtml();
+menuHtml[2].innerHTML = menu3.MenuItemHtml();
+
