@@ -242,28 +242,37 @@ class MenuItem{
         this.total = total;
     }
 
-    MenuItemHtml(){return `    <img src="${this.img}" alt="vegy">
+    MenuItemHtml(){return `<div class="menu__item">
+                            <img src="${this.img}" alt="vegy">
                             <h3 class="menu__item-subtitle">${this.subtitle}</h3>
                             <div class="menu__item-descr">${this.descr}</div>
                             <div class="menu__item-divider"></div>
                             <div class="menu__item-price">
                                 <div class="menu__item-cost">Цена:</div>
                                 <div class="menu__item-total"><span>${this.total}</span> грн/день</div>
-                            </div>`
+                            </div>
+                        </div>`
                         
     }
 
 }
 
-const menu1 = new MenuItem('img/tabs/vegy.jpg','Меню "Фитнес"','Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!','229');
-const menu2 = new MenuItem('img/tabs/elite.jpg','Меню “Премиум”','В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!','550');
-const menu3 = new MenuItem('img/tabs/post.jpg','Меню "Постное','Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.','430');
+menu = [
+{'img': 'img/tabs/vegy.jpg',
+'menu': 'Меню "Фитнес"',
+'text': 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+'total': '229'
+},
+{ 'img': "img/tabs/elite.jpg", 'menu': "Меню “Премиум”", 'text': "В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!", 'total': "550" },
+{ 'img': "img/tabs/post.jpg", 'menu': "Меню ”Постное”", 'text': "Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.", 'total': "430" }
+]
 
-console.log(menu1);
+const menuFieldContainer = document.querySelector('.menu__field').firstElementChild;
 
-const menuHtml = document.querySelectorAll('.menu__item');
-
-menuHtml[0].innerHTML = menu1.MenuItemHtml();
-menuHtml[1].innerHTML = menu2.MenuItemHtml();
-menuHtml[2].innerHTML = menu3.MenuItemHtml();
-
+menu.forEach(el => {
+    menuel = new MenuItem(el.img, el.menu, el.text, el.total);
+    newDiv = document.createElement("div")
+    newDiv.className = "menu__item"
+    newDiv.innerHTML = menuel.MenuItemHtml()
+    menuFieldContainer.appendChild(newDiv)
+})
